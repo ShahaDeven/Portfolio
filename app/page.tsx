@@ -28,12 +28,14 @@ import {
 } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { ModeToggle } from "@/components/mode-toggle"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { BarChart } from "lucide-react"
 
 export default function Home() {
   const achievements = [
     { number: "74%", label: "ML Model Accuracy", icon: Target },
     { number: "30%", label: "Performance Improvement", icon: TrendingUp },
-    { number: "5+", label: "Published Papers", icon: BookOpen },
+    { number: "3", label: "Published Papers", icon: BookOpen },
     { number: "87%", label: "Detection Accuracy", icon: Zap },
   ]
 
@@ -54,9 +56,11 @@ export default function Home() {
       role: "Researcher",
       duration: "March 2025 - Present",
       description: [
-        "Led independent research on predictive modeling for graduate admissions, achieving 74% accuracy using advanced ML techniques and XAI.",
-        "Published multiple papers in IEEE conferences on topics including fleet optimization and fake account detection.",
-        "Developed and evaluated novel algorithms for explainable AI and optimization problems.",
+        "Led a solo research project under Dr. David Doermann (Chair, Dept. of CSE) to predict graduate admissions using applicant data.",
+        "Performed end-to-end data processing, feature engineering with AHP scoring, and model training using RandomForest, Neural Networks, and Gradient Boosting.",
+        "Achieved 74% accuracy through k-fold cross-validation and iterative tuning with Scikit-learn.",
+        "Visualized feature importance and model diagnostics using Python libraries for explainability and reporting.",
+        "Incorporated LIME to provide transparent, interpretable local explanations as part of an XAI pipeline for model decision analysis."
       ],
     },
     {
@@ -64,10 +68,38 @@ export default function Home() {
       role: "Python Developer Intern",
       duration: "Jan 2024 - Jun 2024",
       description: [
-        "Developed and optimized web applications using Python (Django, Flask) and modern frontend technologies, improving performance by 30%.",
-        "Implemented RESTful APIs and integrated with various databases (SQL, NoSQL).",
-        "Collaborated with cross-functional teams to design and deploy scalable solutions.",
+        "Leveraged data analysis to identify performance bottlenecks in Django-based web applications, achieving a 30%reduction in response times.",
+        "Restructured complex SQL statements using data-driven methods, reducing latency and optimizing user experience during peak traffic.",
+        "Collaborated with a team of 3 front-end developers, enhancing interface usability based on post-deployment user metrics.",
+        "Spearheaded implementation of standardized code review checklists, increasing review throughput by 50% within six months."
       ],
+    },
+  ]
+  const tableauDashboards = [
+    {
+      title: "✈️ Aircraft Reviews Dashboard",
+      description: [
+        "Analyzed airline passenger reviews across key categories: Cabin Staff, Entertainment, Food, Ground Service, Seat Comfort, and Value for Money.",
+        "Included filter options for Passenger Type and Seat Type.",
+        "Created an interactive dashboard to identify satisfaction trends and airline performance insights.",
+      ],
+      link: "https://public.tableau.com/views/Aircraft_Reviews/Dashboard1",
+      embedSrc:
+        "https://public.tableau.com/views/Aircraft_Reviews/Dashboard1?:embed=y&:display_count=yes&:showVizHome=no",
+      height: "800", // Original height from Streamlit code
+    },
+    {
+      title: "🛒 Ecommerce Sales Dashboard",
+      description: [
+        "Visualized top 10 customers by predicted CLV to identify key revenue contributors.",
+        "Included dynamic filters for Country and Segment (e.g., Champion, At Risk, Big Spender) to explore regional patterns.",
+        "Compared CLV distribution, average revenue, and customer segments using histograms and bar charts.",
+        "Interactive dashboard supports insights on customer targeting and regional marketing strategy.",
+      ],
+      link: "https://public.tableau.com/app/profile/deven.shah/viz/Ecommerce_sales_17482171615060/CustomerLifetimeValueDashboard#1",
+      embedSrc:
+        "https://public.tableau.com/views/Ecommerce_sales_17482171615060/CustomerLifetimeValueDashboard?:embed=y&:display_count=yes&:showVizHome=no",
+      height: "900", // Original height from Streamlit code
     },
   ]
 
@@ -200,7 +232,7 @@ export default function Home() {
 
                 {/* Tech Stack Preview */}
                 <div className="flex flex-wrap gap-3 pt-4">
-                  {["Python", "TensorFlow", "Scikit-learn", "Tableau", "SQL", "Deep Learning"].map((tech) => (
+                  {["Python", "TensorFlow","Machine Learning", "Scikit-learn", "Tableau", "SQL", "Deep Learning","XAI"].map((tech) => (
                     <Badge
                       key={tech}
                       variant="outline"
@@ -456,14 +488,24 @@ export default function Home() {
               {[
                 {
                   title: "Time Series Forecasting",
-                  description: "LSTM-based sales forecasting with 82% R² score",
+                  description: ["Developed a deep learning pipeline to forecast retail sales using Bidirectional LSTM and stacked LSTM layers with Huber loss and dropout regularization.",
+                              "Engineered rich temporal features (e.g., day-of-week, weekend, week-of-year) and implemented sequence generation for time-based forecasting windows.",
+                              "Created autoregressive prediction loops for 1-day, 7-day, and 30-day rolling forecasts with smoothed and downsampled visualizations.",
+                              "Tuned hyperparameters (e.g., LSTM units, learning rate, dropout, batch size) using Optuna to reduce MAE and RMSE, and improve R².",
+                              "Evaluated model with R² Score: 0.8191, RMSE: 1415.43 and MAE: 945.18."],
                   icon: LineChart,
                   tags: ["TensorFlow", "LSTM", "Time Series"],
                   metrics: { accuracy: "82%", type: "R² Score" },
                 },
                 {
-                  title: "Fleet Optimization",
-                  description: "Ant Colony Optimization for vehicle routing",
+                  title: "Fleet Optimization using Ant Colony Optimization",
+                  description: ["Developed an optimized routing system using Ant Colony Optimization for large-scale vehicle fleets with varied capacities tailored for distributors.",
+                                "Employed bio-inspired optimization techniques to identify the most efficient routes, reducing travel time and fuel consumption by 25%.",
+                                "Incorporated multiple constraints including vehicle capacity, speed limitations, and time windows to create realistic delivery scenarios.",
+                                "Implemented Clark-weights cost modeling to compare VRP and non-VRP scenarios, demonstrating significant cost savings in fleet operations.",
+                                "Applied pheromone-based path selection and evaporation mechanisms to simulate ant behavior for dynamic route optimization.",
+                                "Published research findings in IEEE Explore, contributing to the field of intelligent transportation systems."
+                              ],
                   icon: Target,
                   tags: ["Optimization", "Python", "IEEE"],
                   metrics: { published: "IEEE", type: "Publication" },
@@ -471,7 +513,13 @@ export default function Home() {
                 },
                 {
                   title: "Fake Account Detection",
-                  description: "ML classifier with 87% accuracy",
+                  description: ["Built a comprehensive classifier for identifying fake social media accounts with 87% accuracy, surpassing original research benchmarks.",
+                                "Constructed and trained diverse machine learning algorithms including Random Forest, SVM, and Gradient Boosting to verify profile authenticity.",
+                                "Implemented advanced preprocessing techniques including missing value imputation, feature scaling, and outlier detection to optimize dataset quality.",
+                                "Applied TFIDF Vectorization for text field analysis, extracting meaningful features from profile descriptions and user-generated content.",
+                                "Addressed class imbalance issues using SMOTE and stratified sampling techniques to improve model generalization.",
+                                "Deployed feature importance analysis to identify key indicators of fake accounts, providing actionable insights for social media platforms.",
+                              ],
                   icon: Database,
                   tags: ["Classification", "NLP", "Security"],
                   metrics: { accuracy: "87%", type: "Detection" },
@@ -479,21 +527,37 @@ export default function Home() {
                 },
                 {
                   title: "Exoplanet Detection",
-                  description: "Deep learning for space exploration",
+                  description:  ["Used artificial neural networks (ANNs) to detect exoplanets from light curve data with 88.3% accuracy, advancing space exploration capabilities.",
+                                  "Implemented deep learning architectures including CNNs and RNNs to analyze complex astronomical time-series data from NASA's Kepler mission.",
+                                  "Employed Gradient Boosting algorithms to predict habitability scores, achieving 91.06% accuracy in identifying potentially habitable worlds.",
+                                  "Applied advanced signal processing techniques to filter noise and extract meaningful patterns from stellar brightness measurements.",
+                                  "Developed feature engineering methods to capture periodic transit signals and stellar variability patterns.",
+                                  "Combined astronomy domain knowledge with machine learning to enhance detection of Earth-like exoplanets in habitable zones.",
+                                ],
                   icon: Rocket,
                   tags: ["Deep Learning", "NASA", "ANN"],
                   metrics: { accuracy: "88.3%", type: "Detection" },
                 },
                 {
                   title: "Happiness Prediction",
-                  description: "SunHacks 2022 winner project",
+                  description: ["Developed a multi-modal happiness prediction system using Random Forest, MLP Classifier, and Logistic Regression with 85% accuracy.",
+                                "Incorporated innovative features including music preferences, listening patterns, and genre analysis as predictive attributes for emotional state.",
+                                "Implemented advanced sentiment analysis using Twitter API to process tweets and identify positive/negative emotional indicators.",
+                                "Applied natural language processing techniques including tokenization, lemmatization, and emotion lexicon matching for text analysis.",
+                                "Created a real-time dashboard for visualizing happiness trends and providing personalized recommendations for mood improvement.",
+                                "Addressed ethical considerations in mental health prediction by implementing privacy-preserving techniques and user consent mechanisms."],
                   icon: Trophy,
                   tags: ["NLP", "Twitter API", "Award"],
                   metrics: { award: "Winner", type: "SunHacks" },
                 },
                 {
                   title: "Agriculture Drone",
-                  description: "Patented drone design for farming",
+                  description: ["Granted a Design Patent (Patent No. 404133-001) for innovative drone design optimized for precision agriculture applications.",
+                              "Built a custom drone from scratch by sourcing and assembling specialized components, tailored for pesticide fogging operations in farmlands.",
+                              "Strategically positioned multiple foggers to maximize pesticide distribution efficiency while minimizing chemical waste and environmental impact.",
+                              "Integrated high-resolution cameras and GPS systems for autonomous field mapping and precise navigation over agricultural terrain.",
+                              "Implemented flight path optimization algorithms using Mission Planner software to ensure complete field coverage and avoid obstacles.",
+                              "Collaborated with local farmers to test and validate the drone's effectiveness in real-world agricultural scenarios, achieving 40% reduction in pesticide usage."],
                   icon: Award,
                   tags: ["Hardware", "Patent", "Innovation"],
                   metrics: { patent: "Granted", type: "Design Patent" },
@@ -547,9 +611,75 @@ export default function Home() {
                 </Card>
               ))}
             </div>
+
+            {/* Tableau Dashboards Section */}
+            <section id="tableau-dashboards" className="py-24">
+              <div className="container">
+                <div className="mx-auto max-w-3xl text-center mb-16">
+                  <div className="inline-flex items-center justify-center rounded-full bg-primary/10 px-4 py-2 text-sm text-primary border border-primary/20 mb-6">
+                    <BarChart className="mr-2 h-4 w-4" />
+                    Tableau Dashboards
+                  </div>
+                  <h2 className="text-4xl font-bold mb-6">Interactive Data Visualizations</h2>
+                  <p className="text-lg text-muted-foreground">
+                    Explore my interactive Tableau dashboards showcasing data analysis and insights.
+                  </p>
+                </div>
+
+                <Accordion type="single" collapsible className="w-full max-w-7xl mx-auto">
+                  {tableauDashboards.map((dashboard, index) => (
+                    <AccordionItem key={index} value={`item-${index}`} className="border-b border-border/50">
+                      <AccordionTrigger className="text-lg font-semibold hover:no-underline py-4">
+                        {dashboard.title}
+                      </AccordionTrigger>
+                      <AccordionContent className="pt-4 pb-6">
+                        <div className="space-y-4 text-muted-foreground mb-6">
+                          <ul className="list-disc pl-5 space-y-2">
+                            {dashboard.description.map((point, i) => (
+                              <li key={i}>{point}</li>
+                            ))}
+                          </ul>
+                          <p>
+                            <Link
+                              href={dashboard.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-primary hover:underline flex items-center gap-1"
+                            >
+                              <ExternalLink className="h-4 w-4" /> View on Tableau Public
+                            </Link>
+                          </p>
+                        </div>
+                        <div
+                          className="relative w-full overflow-hidden rounded-lg shadow-xl border border-border/50"
+                          style={{ paddingTop: `${(Number.parseInt(dashboard.height) / 1250) * 100}%` }}
+                        >
+                          {/* Using padding-top trick for responsive iframe height based on aspect ratio */}
+                          <iframe
+                            src={dashboard.embedSrc}
+                            width="100%"
+                            height={dashboard.height}
+                            style={{
+                              border: "none",
+                              position: "absolute",
+                              top: 0,
+                              left: 0,
+                              width: "100%",
+                              height: "100%",
+                            }}
+                            frameBorder="0"
+                            allowFullScreen
+                          ></iframe>
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </div>
+            </section>
           </div>
         </section>
-
+                    
         {/* Enhanced Contact Section */}
         <section id="contact" className="py-24 bg-gradient-to-br from-primary/5 to-primary/10">
           <div className="container">
@@ -646,7 +776,7 @@ export default function Home() {
                 </CardContent>
               </Card>
 
-              {/* Contact Form */}
+              {/* Contact Form
               <Card className="border-none shadow-xl bg-background/80 backdrop-blur">
                 <CardHeader>
                   <CardTitle>Send a Message</CardTitle>
@@ -706,7 +836,7 @@ export default function Home() {
                     </Button>
                   </form>
                 </CardContent>
-              </Card>
+              </Card> */}
             </div>
           </div>
         </section>
