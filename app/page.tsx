@@ -2,7 +2,6 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Progress } from "@/components/ui/progress"
 import {
   Github,
   Linkedin,
@@ -40,14 +39,14 @@ export default function Home() {
   ]
 
   const skills = [
-    { name: "Python", level: 95, category: "Programming" },
-    { name: "Machine Learning", level: 90, category: "AI/ML" },
-    { name: "Deep Learning", level: 85, category: "AI/ML" },
-    { name: "Data Analysis", level: 92, category: "Analytics" },
-    { name: "SQL", level: 88, category: "Database" },
-    { name: "TensorFlow", level: 82, category: "Frameworks" },
-    { name: "Scikit-learn", level: 90, category: "Libraries" },
-    { name: "Tableau", level: 85, category: "Visualization" },
+    { name: "Python", level: 5, category: "Programming" },
+    { name: "Machine Learning", level: 5, category: "AI/ML" },
+    { name: "Deep Learning", level: 4, category: "AI/ML" },
+    { name: "Data Analysis", level: 5, category: "Analytics" },
+    { name: "SQL", level: 4, category: "Database" },
+    { name: "TensorFlow", level: 4, category: "Frameworks" },
+    { name: "Scikit-learn", level: 5, category: "Libraries" },
+    { name: "Tableau", level: 4, category: "Visualization" },
   ]
 
   const experience = [
@@ -115,7 +114,7 @@ export default function Home() {
                   DS
                 </span>
               </div>
-              <span className="font-bold text-lg hidden sm:block">Deven Shah</span>
+              <span className="font-bold text-lg">Deven Shah</span>
             </Link>
             <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
               <Link href="#about" className="transition-colors hover:text-primary">
@@ -173,14 +172,14 @@ export default function Home() {
           <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-primary/8 rounded-full blur-lg animate-pulse delay-500"></div>
 
           <div className="container relative z-10 py-20">
-            <div className="grid gap-12 lg:grid-cols-[1fr_400px] lg:gap-16 xl:grid-cols-[1fr_500px] items-center">
+            <div className="grid gap-12 grid-cols-1 md:grid-cols-2 items-center">
               <div className="flex flex-col justify-center space-y-8">
                 <div className="space-y-4">
                   <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-sm text-primary border border-primary/20">
                     <Rocket className="h-4 w-4" />
                     Available for Opportunities
                   </div>
-                  <h1 className="text-5xl font-bold tracking-tight sm:text-6xl xl:text-7xl bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+                  <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl xl:text-7xl bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
                     Deven Rahul Shah
                   </h1>
                   <div className="text-xl text-primary font-semibold">Data Scientist & ML Engineer</div>
@@ -214,7 +213,7 @@ export default function Home() {
                 <div className="flex flex-col gap-4 min-[400px]:flex-row">
                   <Button
                     size="lg"
-                    className="group bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 shadow-lg"
+                    className="group w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 shadow-lg"
                     asChild
                   >
                     <Link href="#contact">
@@ -222,7 +221,7 @@ export default function Home() {
                       <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </Link>
                   </Button>
-                  <Button variant="outline" size="lg" className="border-2 hover:bg-primary/5 bg-transparent" asChild>
+                  <Button variant="outline" size="lg" className="w-full border-2 hover:bg-primary/5 bg-transparent" asChild>
                     <Link href="/Deven_Rahul_Shah_Resume.pdf" download>
                       <Download className="mr-2 h-4 w-4" />
                       Download Resume
@@ -245,7 +244,7 @@ export default function Home() {
               </div>
 
               {/* Enhanced Profile Image */}
-              <div className="flex items-center justify-center">
+              <div className="flex items-center justify-center order-last md:order-none">
                 <div className="relative">
                   {/* Animated Rings */}
                   <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-primary/20 to-primary/10 animate-spin-slow"></div>
@@ -392,37 +391,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Enhanced Skills Section */}
-        <section id="skills" className="py-24 bg-muted/30">
-          <div className="container">
-            <div className="mx-auto max-w-3xl text-center mb-16">
-              <div className="inline-flex items-center justify-center rounded-full bg-primary/10 px-4 py-2 text-sm text-primary border border-primary/20 mb-6">
-                <Zap className="mr-2 h-4 w-4" />
-                Technical Skills
-              </div>
-              <h2 className="text-4xl font-bold mb-6">Expertise & Proficiency</h2>
-              <p className="text-lg text-muted-foreground">
-                A comprehensive overview of my technical skills and proficiency levels across different domains.
-              </p>
-            </div>
-
-            <div className="grid gap-8 md:grid-cols-2">
-              {skills.map((skill, index) => (
-                <div key={index} className="bg-background rounded-lg p-6 shadow-lg border border-border/50">
-                  <div className="flex justify-between items-center mb-3">
-                    <div>
-                      <div className="font-semibold">{skill.name}</div>
-                      <div className="text-sm text-muted-foreground">{skill.category}</div>
-                    </div>
-                    <div className="text-2xl font-bold text-primary">{skill.level}%</div>
-                  </div>
-                  <Progress value={skill.level} className="h-2" />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* Enhanced Projects Section */}
         <section id="projects" className="py-24">
           <div className="container">
@@ -448,8 +416,9 @@ export default function Home() {
                     </div>
                     <h3 className="text-2xl font-bold mb-4">Graduate Admission Prediction</h3>
                     <p className="text-muted-foreground mb-6 leading-relaxed">
-                      Led an independent research project under Dr. David Doermann to predict graduate admissions using
-                      historical applicant data. Achieved 74% accuracy using advanced ML techniques and XAI.
+                      • Led an independent research project under Dr. David Doermann to predict graduate admissions using
+                      historical applicant data.
+                      • Achieved 74% accuracy using advanced ML techniques and XAI.
                     </p>
                     <div className="flex flex-wrap gap-2 mb-6">
                       <Badge>Python</Badge>
@@ -488,23 +457,23 @@ export default function Home() {
               {[
                 {
                   title: "Time Series Forecasting",
-                  description: ["Developed a deep learning pipeline to forecast retail sales using Bidirectional LSTM and stacked LSTM layers with Huber loss and dropout regularization.",
-                              "Engineered rich temporal features (e.g., day-of-week, weekend, week-of-year) and implemented sequence generation for time-based forecasting windows.",
-                              "Created autoregressive prediction loops for 1-day, 7-day, and 30-day rolling forecasts with smoothed and downsampled visualizations.",
-                              "Tuned hyperparameters (e.g., LSTM units, learning rate, dropout, batch size) using Optuna to reduce MAE and RMSE, and improve R².",
-                              "Evaluated model with R² Score: 0.8191, RMSE: 1415.43 and MAE: 945.18."],
+                  description: ["• Developed a deep learning pipeline to forecast retail sales using Bidirectional LSTM and stacked LSTM layers with Huber loss and dropout regularization.",
+                              "• Engineered rich temporal features (e.g., day-of-week, weekend, week-of-year) and implemented sequence generation for time-based forecasting windows.",
+                              "• Created autoregressive prediction loops for 1-day, 7-day, and 30-day rolling forecasts with smoothed and downsampled visualizations.",
+                              "• Tuned hyperparameters (e.g., LSTM units, learning rate, dropout, batch size) using Optuna to reduce MAE and RMSE, and improve R².",
+                              "• Evaluated model with R² Score: 0.8191, RMSE: 1415.43 and MAE: 945.18."],
                   icon: LineChart,
-                  tags: ["TensorFlow", "LSTM", "Time Series"],
+                  tags: ["TensorFlow", "LSTM", "Time Series","Python"],
                   metrics: { accuracy: "82%", type: "R² Score" },
                 },
                 {
                   title: "Fleet Optimization using Ant Colony Optimization",
-                  description: ["Developed an optimized routing system using Ant Colony Optimization for large-scale vehicle fleets with varied capacities tailored for distributors.",
-                                "Employed bio-inspired optimization techniques to identify the most efficient routes, reducing travel time and fuel consumption by 25%.",
-                                "Incorporated multiple constraints including vehicle capacity, speed limitations, and time windows to create realistic delivery scenarios.",
-                                "Implemented Clark-weights cost modeling to compare VRP and non-VRP scenarios, demonstrating significant cost savings in fleet operations.",
-                                "Applied pheromone-based path selection and evaporation mechanisms to simulate ant behavior for dynamic route optimization.",
-                                "Published research findings in IEEE Explore, contributing to the field of intelligent transportation systems."
+                  description: ["• Developed an optimized routing system using Ant Colony Optimization for large-scale vehicle fleets with varied capacities tailored for distributors.",
+                                "• Employed bio-inspired optimization techniques to identify the most efficient routes, reducing travel time and fuel consumption by 25%.",
+                                "• Incorporated multiple constraints including vehicle capacity, speed limitations, and time windows to create realistic delivery scenarios.",
+                                "• Implemented Clark-weights cost modeling to compare VRP and non-VRP scenarios, demonstrating significant cost savings in fleet operations.",
+                                "• Applied pheromone-based path selection and evaporation mechanisms to simulate ant behavior for dynamic route optimization.",
+                                "• Published research findings in IEEE Explore, contributing to the field of intelligent transportation systems."
                               ],
                   icon: Target,
                   tags: ["Optimization", "Python", "IEEE"],
@@ -513,53 +482,53 @@ export default function Home() {
                 },
                 {
                   title: "Fake Account Detection",
-                  description: ["Built a comprehensive classifier for identifying fake social media accounts with 87% accuracy, surpassing original research benchmarks.",
-                                "Constructed and trained diverse machine learning algorithms including Random Forest, SVM, and Gradient Boosting to verify profile authenticity.",
-                                "Implemented advanced preprocessing techniques including missing value imputation, feature scaling, and outlier detection to optimize dataset quality.",
-                                "Applied TFIDF Vectorization for text field analysis, extracting meaningful features from profile descriptions and user-generated content.",
-                                "Addressed class imbalance issues using SMOTE and stratified sampling techniques to improve model generalization.",
-                                "Deployed feature importance analysis to identify key indicators of fake accounts, providing actionable insights for social media platforms.",
+                  description: ["• Built a comprehensive classifier for identifying fake social media accounts with 87% accuracy, surpassing original research benchmarks.",
+                                "• Constructed and trained diverse machine learning algorithms including Random Forest, SVM, and Gradient Boosting to verify profile authenticity.",
+                                "• Implemented advanced preprocessing techniques including missing value imputation, feature scaling, and outlier detection to optimize dataset quality.",
+                                "• Applied TFIDF Vectorization for text field analysis, extracting meaningful features from profile descriptions and user-generated content.",
+                                "• Addressed class imbalance issues using SMOTE and stratified sampling techniques to improve model generalization.",
+                                "• Deployed feature importance analysis to identify key indicators of fake accounts, providing actionable insights for social media platforms.",
                               ],
                   icon: Database,
-                  tags: ["Classification", "NLP", "Security"],
+                  tags: ["Classification", "NLP", "Security","Python"],
                   metrics: { accuracy: "87%", type: "Detection" },
                   link: "https://ieeexplore.ieee.org/document/10459570",
                 },
                 {
                   title: "Exoplanet Detection",
-                  description:  ["Used artificial neural networks (ANNs) to detect exoplanets from light curve data with 88.3% accuracy, advancing space exploration capabilities.",
-                                  "Implemented deep learning architectures including CNNs and RNNs to analyze complex astronomical time-series data from NASA's Kepler mission.",
-                                  "Employed Gradient Boosting algorithms to predict habitability scores, achieving 91.06% accuracy in identifying potentially habitable worlds.",
-                                  "Applied advanced signal processing techniques to filter noise and extract meaningful patterns from stellar brightness measurements.",
-                                  "Developed feature engineering methods to capture periodic transit signals and stellar variability patterns.",
-                                  "Combined astronomy domain knowledge with machine learning to enhance detection of Earth-like exoplanets in habitable zones.",
+                  description:  ["• Used artificial neural networks (ANNs) to detect exoplanets from light curve data with 88.3% accuracy, advancing space exploration capabilities.",
+                                  "• Implemented deep learning architectures including CNNs and RNNs to analyze complex astronomical time-series data from NASA's Kepler mission.",
+                                  "• Employed Gradient Boosting algorithms to predict habitability scores, achieving 91.06% accuracy in identifying potentially habitable worlds.",
+                                  "• Applied advanced signal processing techniques to filter noise and extract meaningful patterns from stellar brightness measurements.",
+                                  "• Developed feature engineering methods to capture periodic transit signals and stellar variability patterns.",
+                                  "• Combined astronomy domain knowledge with machine learning to enhance detection of Earth-like exoplanets in habitable zones.",
                                 ],
                   icon: Rocket,
-                  tags: ["Deep Learning", "NASA", "ANN"],
+                  tags: ["Deep Learning", "NASA", "ANN","Python"],
                   metrics: { accuracy: "88.3%", type: "Detection" },
                 },
                 {
                   title: "Happiness Prediction",
-                  description: ["Developed a multi-modal happiness prediction system using Random Forest, MLP Classifier, and Logistic Regression with 85% accuracy.",
-                                "Incorporated innovative features including music preferences, listening patterns, and genre analysis as predictive attributes for emotional state.",
-                                "Implemented advanced sentiment analysis using Twitter API to process tweets and identify positive/negative emotional indicators.",
-                                "Applied natural language processing techniques including tokenization, lemmatization, and emotion lexicon matching for text analysis.",
-                                "Created a real-time dashboard for visualizing happiness trends and providing personalized recommendations for mood improvement.",
-                                "Addressed ethical considerations in mental health prediction by implementing privacy-preserving techniques and user consent mechanisms."],
+                  description: ["• Developed a multi-modal happiness prediction system using Random Forest, MLP Classifier, and Logistic Regression with 85% accuracy.",
+                                "• Incorporated innovative features including music preferences, listening patterns, and genre analysis as predictive attributes for emotional state.",
+                                "• Implemented advanced sentiment analysis using Twitter API to process tweets and identify positive/negative emotional indicators.",
+                                "• Applied natural language processing techniques including tokenization, lemmatization, and emotion lexicon matching for text analysis.",
+                                "• Created a real-time dashboard for visualizing happiness trends and providing personalized recommendations for mood improvement.",
+                                "• Addressed ethical considerations in mental health prediction by implementing privacy-preserving techniques and user consent mechanisms."],
                   icon: Trophy,
-                  tags: ["NLP", "Twitter API", "Award"],
+                  tags: ["NLP", "Twitter API", "Award","Python"],
                   metrics: { award: "Winner", type: "SunHacks" },
                 },
                 {
                   title: "Agriculture Drone",
-                  description: ["Granted a Design Patent (Patent No. 404133-001) for innovative drone design optimized for precision agriculture applications.",
-                              "Built a custom drone from scratch by sourcing and assembling specialized components, tailored for pesticide fogging operations in farmlands.",
-                              "Strategically positioned multiple foggers to maximize pesticide distribution efficiency while minimizing chemical waste and environmental impact.",
-                              "Integrated high-resolution cameras and GPS systems for autonomous field mapping and precise navigation over agricultural terrain.",
-                              "Implemented flight path optimization algorithms using Mission Planner software to ensure complete field coverage and avoid obstacles.",
-                              "Collaborated with local farmers to test and validate the drone's effectiveness in real-world agricultural scenarios, achieving 40% reduction in pesticide usage."],
+                  description: ["• Granted a Design Patent (Patent No. 404133-001) for innovative drone design optimized for precision agriculture applications.",
+                              "• Built a custom drone from scratch by sourcing and assembling specialized components, tailored for pesticide fogging operations in farmlands.",
+                              "• Strategically positioned multiple foggers to maximize pesticide distribution efficiency while minimizing chemical waste and environmental impact.",
+                              "• Integrated high-resolution cameras and GPS systems for autonomous field mapping and precise navigation over agricultural terrain.",
+                              "• Implemented flight path optimization algorithms using Mission Planner software to ensure complete field coverage and avoid obstacles.",
+                              "• Collaborated with local farmers to test and validate the drone's effectiveness in real-world agricultural scenarios, achieving 40% reduction in pesticide usage."],
                   icon: Award,
-                  tags: ["Hardware", "Patent", "Innovation"],
+                  tags: ["Hardware", "Patent", "Innovation","Python"],
                   metrics: { patent: "Granted", type: "Design Patent" },
                 },
               ].map((project, index) => (
@@ -573,7 +542,15 @@ export default function Home() {
                       <project.icon className="h-6 w-6 text-primary" />
                     </div>
                     <CardTitle className="group-hover:text-primary transition-colors">{project.title}</CardTitle>
-                    <CardDescription>{project.description}</CardDescription>
+                    <CardDescription>
+                      <div className="space-y-2">
+                        {project.description.map((point, i) => (
+                          <div key={i} className="text-sm leading-relaxed">
+                            {point}
+                          </div>
+                        ))}
+                      </div>
+                    </CardDescription>
                   </CardHeader>
                   <CardContent className="flex-1">
                     <div className="flex flex-wrap gap-2 mb-4">
@@ -677,6 +654,36 @@ export default function Home() {
                 </Accordion>
               </div>
             </section>
+          </div>
+        </section>
+
+        {/* Enhanced Skills Section */}
+        <section id="skills" className="py-24 bg-muted/30">
+          <div className="container">
+            <div className="mx-auto max-w-3xl text-center mb-16">
+              <div className="inline-flex items-center justify-center rounded-full bg-primary/10 px-4 py-2 text-sm text-primary border border-primary/20 mb-6">
+                <Zap className="mr-2 h-4 w-4" />
+                Technical Skills
+              </div>
+              <h2 className="text-4xl font-bold mb-6">Expertise & Proficiency</h2>
+              <p className="text-lg text-muted-foreground">
+                A comprehensive overview of my technical skills and proficiency levels across different domains.
+              </p>
+            </div>
+
+            <div className="grid gap-8 md:grid-cols-2">
+              {skills.map((skill, index) => (
+                <div key={index} className="bg-background rounded-lg p-6 shadow-lg border border-border/50">
+                  <div className="flex justify-between items-center mb-3">
+                    <div>
+                      <div className="font-semibold">{skill.name}</div>
+                      <div className="text-sm text-muted-foreground">{skill.category}</div>
+                    </div>
+                    <div className="text-2xl font-bold text-primary">{`${skill.level}/5`}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
                     
