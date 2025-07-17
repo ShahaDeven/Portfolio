@@ -223,7 +223,7 @@ export default function Home() {
                   <div className="relative">
                     <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-primary to-primary/50 opacity-75 blur-sm"></div>
                     <Avatar className="h-80 w-80 border-4 border-background relative shadow-2xl">
-                      <AvatarImage src="/images/profile.jpeg" alt="Deven Shah" />
+                      <AvatarImage src="/images/profile.jpeg" alt="Deven Shah" className="object-cover object-center"/>
                       <AvatarFallback className="text-6xl bg-gradient-to-br from-primary/20 to-primary/10">
                         DS
                       </AvatarFallback>
